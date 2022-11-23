@@ -1,24 +1,52 @@
-import logo from './logo.svg';
+import Navbar from './components/navbar'
+import Character from './pages/character';
+import DetailCharacter from './pages/character/detailCharacter';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation 
+} from "react-router-dom";
+import { useState } from 'react';
 import './App.css';
+import About from './pages/about';
+import Login from './pages/login';
 
 function App() {
+  const [isLogin, setIsLogin] = useState(true)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+
+        {isLogin ? 
+          (
+            <p>
+              <Navbar />
+              
+              <Routes>
+                <Route path="/character" element={<Character />}/>
+              </Routes>
+              <Routes>
+                <Route path="/detail-character" element={<DetailCharacter />}/>
+              </Routes>
+              <Routes>
+                <Route path="/about-us" element={<About />}/>
+              </Routes>
+              
+            </p>
+          ) 
+          : 
+          (
+            <p>
+              <Routes>
+                <Route path="/" element={<Login />}/>
+              </Routes>
+            </p>
+          )
+        }
+       
+      </div>
+    </Router>
   );
 }
 

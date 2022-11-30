@@ -2,8 +2,31 @@ import '../../App.css'
 import logo from '../../assets/logo.svg'
 import TextInput from '../../elements/TextInput'
 import Button from '../../components/Button'
+import axios from 'axios'
+import { useState } from 'react';
 
-export default function Login(){
+export default function Login(props){
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const loginForm = () => {
+        const formData = new FormData()
+        formData.append('email', email)
+        formData.append('password', password)
+        console.log(formData);
+        axios
+        .post('https://reqres.in/api/login', formData)
+        .then((res) => {
+            console.log(res)
+            if(res.status == 200){
+                props.login(true)
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
 
     const cardLogin = {
         display: 'flex',
@@ -40,10 +63,10 @@ export default function Login(){
                 </p>
                 <form style={{display: 'flex', flexDirection: 'column'}}>
                     <label for='email' style={subtitle}>Email</label>
-                    <TextInput id='email' type='email' placeholder='Insert Your Email' style={{marginBottom: '12px'}}/>
+                    <TextInput id='email' type='email' placeholder='Insert Your Email' style={{marginBottom: '12px'}} action={(data) => setEmail(data)}/>
                     <label for='password' style={subtitle}>Password</label>
-                    <TextInput id='password' type='password' placeholder='Insert Your Password'/>
-                    <div style={{display: 'flex', marginTop: '12px'}}>
+                    <TextInput id='password' type='password' placeholder='Insert Your Password'action={(data) => setPassword(data)}/>
+                    <div onClick={loginForm} style={{display: 'flex', marginTop: '12px'}}>
                         <Button title='Login' margin='auto'/>
                     </div>
                 </form>

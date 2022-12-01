@@ -1,6 +1,6 @@
 import '../../App.css'
 import logo from '../../assets/logo.svg'
-import TextInput from '../../elements/TextInput'
+import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Button'
 import axios from 'axios'
 import { useState } from 'react';
@@ -11,15 +11,14 @@ export default function Login(props){
     const [password, setPassword] = useState('');
 
     const loginForm = () => {
-        const formData = new FormData()
-        formData.append('email', email)
-        formData.append('password', password)
-        console.log(formData);
         axios
-        .post('https://reqres.in/api/login', formData)
+        .post('https://reqres.in/api/login', {
+            email: email,
+            password: password
+        })
         .then((res) => {
             console.log(res)
-            if(res.status == 200){
+            if(res.status === 200){
                 props.login(true)
             }
         })
@@ -63,9 +62,9 @@ export default function Login(props){
                 </p>
                 <form style={{display: 'flex', flexDirection: 'column'}}>
                     <label for='email' style={subtitle}>Email</label>
-                    <TextInput id='email' type='email' placeholder='Insert Your Email' style={{marginBottom: '12px'}} action={(data) => setEmail(data)}/>
+                    <TextInput id='email' type='email' placeholder='Insert Your Email' style={{marginBottom: '12px'}} onChange={(e) => setEmail(e.target.value)}/>
                     <label for='password' style={subtitle}>Password</label>
-                    <TextInput id='password' type='password' placeholder='Insert Your Password'action={(data) => setPassword(data)}/>
+                    <TextInput id='password' type='password' placeholder='Insert Your Password' onChange={(e) => setPassword(e.target.value)}/>
                     <div onClick={loginForm} style={{display: 'flex', marginTop: '12px'}}>
                         <Button title='Login' margin='auto'/>
                     </div>

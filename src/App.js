@@ -11,9 +11,11 @@ import { useState } from 'react';
 import './App.css';
 import About from './pages/about';
 import Login from './pages/login';
+import Search from './pages/search';
 
 function App() {
   const [isLogin, setIsLogin] = useState(false)
+  
   return (
     <Router>
       <div className="App">
@@ -24,13 +26,16 @@ function App() {
               <Navbar />
               
               <Routes>
-                <Route path="/character" element={<Character />}/>
+                <Route path="/" element={<Character />}/>
               </Routes>
               <Routes>
                 <Route path="/detail-character" element={<DetailCharacter />}/>
               </Routes>
               <Routes>
                 <Route path="/about-us" element={<About />}/>
+              </Routes>
+              <Routes>
+                <Route path="/search" element={<Search />}/>
               </Routes>
               
             </p>
@@ -39,7 +44,7 @@ function App() {
           (
             <p>
               <Routes>
-                <Route path="/" element={<Login />}/>
+                <Route path="/" element={<Login login={(data) => setIsLogin(data)}/>}/>
               </Routes>
             </p>
           )

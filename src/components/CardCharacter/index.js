@@ -1,13 +1,18 @@
 import rick from "../../assets/rick.jpg"
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useState } from "react"
+import Button from "../Button"
 
-export default function CardCharacter(){
+export default function CardCharacter(props){
+
+    const [data, setData] = useState(props.data)
+    const navigate = useNavigate();
 
     const card = {
         display: 'flex',
         flexDirection: 'column',
         width: 'calc((100% / 3) - 24px)',
-        marginTop: '20px',
+        margin: props.margin,
         borderRadius: '8px',
         boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
     }
@@ -30,20 +35,18 @@ export default function CardCharacter(){
 
     return (
         <div style={card}>
-            <img src={rick} alt="character"/>
+            <img src={data.image} alt="character"/>
             <div style={{padding: '10px'}}>
                 <h4 style={title}>
-                    Rick Sanchez
+                    {data.name}
                 </h4>
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <p style={description}>
-                        Human
+                        {data.species}
                     </p>
-                    <Link to='/detail-character'>
-                        <p style={description}>
-                            Detail
-                        </p>
-                    </Link>
+                </div>
+                <div onClick={() => navigate('/detail-character' , { state: { detail: data } } )}>
+                    <Button title='Detail' margin='12px 0 0 0'/>
                 </div>
             </div>
         </div>

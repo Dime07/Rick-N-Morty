@@ -1,9 +1,9 @@
 export default function Button(props){
-    console.log(props)
+
     const button = {
-        width: '10%',
+        width: 'fit-content',
         display: 'flex',
-        padding: '6px',
+        padding: '6px 12px',
         backgroundColor: '#00B0C8',
         borderRadius : '8px',
         color: 'white',

@@ -8,11 +8,52 @@ export default function About(){
                 <p>
                     website ini merupakan website yang menggunakan dua api yaitu api rick and morty dan reqres .Dibuat oleh kelompok 30, dengan anggota kelompok :
                 </p>
-                <ul>
-                    <li>
-                        Dimas Rafi ; 21120119120022
-                    </li>
-                </ul>
+                <table style={{margin:'0 auto'}}>
+                    <tr>
+                        <td>
+                            Helmy Zakiudin
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            21120119130040
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Dimas Rafi
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            21120119120022
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Chairullatif Aji Sadewa
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            21120119120015
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            MUHAMMAD ALAM FIRDAUS
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            21120119140147
+                        </td>
+                    </tr>
+                </table>
             </div>
         </section>
     )

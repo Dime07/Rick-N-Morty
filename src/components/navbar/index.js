@@ -27,9 +27,14 @@ export default function Navbar(){
         <nav style={navbar}>
             <img src={logo} alt="Rick and morty black logo" />
             <ul style={menu}>
-                <Link to="/character">
+                <Link to="/">
                     <li style={menuItem}>
                         Characters
+                    </li>
+                </Link>
+                <Link to="/search">
+                    <li style={menuItem}>
+                        Search
                     </li>
                 </Link>
                 <Link to="/about-us">

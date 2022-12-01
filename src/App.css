@@ -20,3 +20,7 @@ a{
   position: relative;
 }
 
+.scroll::-webkit-scrollbar{
+  display: none;
+}
+

@@ -1,8 +1,30 @@
 import HeaderImage from '../../assets/character.png'
-import TextInput from '../../elements/TextInput'
+import TextInput from '../../components/TextInput/TextInput'
 import CardCharacter from '../../components/CardCharacter'
 import Button from '../../components/Button'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+
+
 export default function Character(){
+
+    const [character, setCharacter] = useState([]);
+
+    useEffect(() => {
+        getAllCharacter();
+    }, [])
+
+    const getAllCharacter = () => [
+        axios
+        .get('https://rickandmortyapi.com/api/character')
+        .then((res) => {
+            setCharacter(res.data.results)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    ]
+    
 
     const imageHeader = {
         margin: '0 auto',
@@ -14,19 +36,10 @@ export default function Character(){
     return(
         <section style={{display: 'flex', flexDirection: 'column', padding: '20px 210px'}}>
             <img src={HeaderImage} alt="header" style={imageHeader}/>
-                {/* ini untuk search */}
-                <div style={{display: 'flex'}}>
-                    <TextInput placeholder='Filter By Name'/>
-                    <Button title='Search' margin='18px 0px 0px 12px'/>
-                </div>
             <div style={{display: 'flex', flexWrap: 'wrap', justifyContent:'space-between'}}>
-                {/* foreach card disini */}
-                <CardCharacter />
-                <CardCharacter />
-                <CardCharacter />
-                <CardCharacter />
-                <CardCharacter />
-                <CardCharacter />
+                {character.map((item, index) => (
+                    <CardCharacter data={item} margin="20px 0 0 0"/>
+                ))}
             </div>
         </section>
     )
